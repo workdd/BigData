@@ -7,7 +7,7 @@ mode = input('형태소 분석기를 선택하세요 - kkma:ka, okt:o, komoran: 
 ko_sentence = input('한글 문장을 입력하세요: ')
 n = int(input('추출문장 개수를 입력하세요: '))
 
-f = open('./KCC150_Korean_sentences_EUCKR.txt', 'r', encoding='cp949', errors='ignore')
+f = open('./xaa', 'r', encoding='cp949', errors='ignore')
 datas = f.readlines()
 
 kkma = Kkma()
@@ -53,4 +53,8 @@ for data in datas:
 print("걸린시간 : ", time.time() - start)
 big_count = sorted(big_count.items(), key=(lambda x: x[1]), reverse=True)
 
-print(big_count[:n])
+for data in big_count:
+    if n <= 0:
+        break
+    print(data[0], data[1])
+    n -= 1
