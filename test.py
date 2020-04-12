@@ -1,6 +1,6 @@
 from konlpy.tag import Kkma, Okt, Komoran
 import time
-
+from threading import Thread
 start = time.time()
 
 mode = input('형태소 분석기를 선택하세요 - kkma:ka, okt:o, komoran: ko')
@@ -50,8 +50,11 @@ big_count = {}
 for data in datas:
     big_count[data] = 0
     big_count[data] += calculate(splited_sentence, morph(data))
+
+th1 = Thread(target=calculate, args=(splited_sentence,))
 print("걸린시간 : ", time.time() - start)
 big_count = sorted(big_count.items(), key=(lambda x: x[1]), reverse=True)
+
 
 for data in big_count:
     if n <= 0:
